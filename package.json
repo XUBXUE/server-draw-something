@@ -1,0 +1,19 @@
+{
+  "name": "server-draw-something",
+  "version": "1.0.0",
+  "description": "The server of the game draw something",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js"
+  },
+  "author": "XUBXUE",
+  "dependencies": {
+    "express": "^4.17.3",
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
