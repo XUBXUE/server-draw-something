@@ -1,0 +1,9 @@
+@url=http://localhost:3000
+
+
+###
+get {{url}}/user
+
+###
+
+post {{url}}/user

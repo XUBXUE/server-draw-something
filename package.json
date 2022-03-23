@@ -5,12 +5,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./index.js",
-    "dev": "nodemon ./index.js"
+    "start": "node ./app/index.js",
+    "dev": "nodemon ./app/index.js"
   },
   "author": "XUBXUE",
   "dependencies": {
     "express": "^4.17.3",
+    "mongoose": "^6.2.8",
     "socket.io": "^4.4.1"
   },
   "devDependencies": {
