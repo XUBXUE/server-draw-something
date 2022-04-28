@@ -1,12 +1,68 @@
-const mongoose = require("mongoose");
-const { model, Schema } = mongoose;
+const model = require("../db");
 
-const UserSchema = new Schema({
-  userName: { type: String, require: true },
-  userState: { type: String, default: 'online'},
-  createTime: { type: String, require: true}
-});
+const getUsers = () => {
+  return new Promise(async (res, rej) => {
+    try {
+      const sql = "SELECT * FROM user";
+      let [err, data] = await model.query(sql);
+      if (err) {
+        rej(false);
+      } else {
+        res(data);
+      }
+    } catch (err) {
+      rej(err);
+    }
+  });
+};
 
-const User = model('User', UserSchema);
+const getUserById = (id) => {
+  return new Promise(async (res, rej) => {
+    try {
+      const sql = `SELECT * FROM user WHERE id = '${id}'`;
+      let [err, data] = await model.query(sql);
+      if (err) {
+        rej(false);
+      } else {
+        res(data);
+      }
+    } catch (err) {
+      rej(err);
+    }
+  });
+};
 
-module.exports = User;
+const deleteUserById = (id) => {
+  return new Promise(async (res, rej) => {
+    try {
+      const sql = `DELETE FROM user WHERE id = '${id}'`;
+      let [err, data] = await model.delete(sql);
+      if (err) {
+        rej(false);
+      } else {
+        res(true);
+      }
+    } catch (err) {
+      rej(err);
+    }
+  });
+};
+
+const addUser = (query) => {
+  return new Promise(async (res, rej) => {
+    try {
+      const sql = "INSERT INTO User SET ?";
+
+      let [err, data] = await model.insert(sql, query);
+      if (err) {
+        rej(false);
+      } else {
+        res(true);
+      }
+    } catch (err) {
+      rej(err);
+    }
+  });
+};
+
+module.exports = { getUsers, addUser, getUserById, deleteUserById };
